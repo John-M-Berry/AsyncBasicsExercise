@@ -18,23 +18,24 @@ falcon(`Sam Wilson`, falconName);
 // 2. Create a promise in the winterSoldier function (Put the setTimeout inside the function with the resolve and reject parameters that is passed into the Promise). Also, consume the promise that is now returned from the winterSoldier function in a way that the value of `Bucky Barnes` will display in the terminal/console for the name2 variable when the winterSoldierName function is run.
 // 2
 let name2 = "Winter Soldier";
+
 function winterSoldierName() {
-    console.log(`Question 2`);
-    console.log(name2);
+  console.log(`Question 2`);
+  console.log(name2);
 }
 
 function winterSoldier(n) {
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            name2 = n;
-            resolve();
-        }, 2000);
-    });
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      name2 = n;
+      resolve();
+    }, 2000);
+  });
 }
 
 winterSoldier(`Bucky Barnes`)
-    .then(winterSoldierName);
-
+  .then(winterSoldierName);
+  
 // function winterSoldier(n) {
 //     setTimeout(() => {
 //         name2 = n;
@@ -99,7 +100,7 @@ async function func1(){
     agent13Name();
   }
   func1();
-  
+
 // Example 1
 // const div1 = document.querySelector(`#first`);
 // const p1 = document.createElement(`p`);
@@ -138,3 +139,24 @@ async function func1(){
 //       resolve('Third Promise')
 //     }, 4000);
 //   });
+// BONUS
+// 4
+const p1 = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve('First Promise')
+    }, 2000);
+  });
+  const p2 = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve('Second Promise')
+    }, 3000);
+  });
+  const p3 = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve('Third Promise')
+    }, 4000);
+  });
+  
+  // Waits until the longest (Time wise) Promise is complete before is runs the ".then" (AKA Callback function)
+  Promise.all([p1, p2, p3])
+    .then(values => console.log(values));
